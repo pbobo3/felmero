@@ -2,7 +2,10 @@ package com.felmero.feladat.controller;
 
 import org.aspectj.apache.bcel.generic.ReturnaddressType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +26,7 @@ public class PostController {
 	
 	private final PostService postService;
 	
+	
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<?> savePost(@RequestBody Post post){
@@ -30,6 +34,19 @@ public class PostController {
 			return ResponseEntity.ok(postService.save(post));
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	@GetMapping("/{id}")
+	@ResponseBody
+	public ResponseEntity<Post> getPost(@PathVariable(value="id") Integer id) {
+		try {
+			Post post = postService.get(id);
+			return ResponseEntity.ok(post);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			
+
 		}
 	}
 	
