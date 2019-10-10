@@ -31,16 +31,18 @@ public class TagServiceImpl implements TagService{
 
 	@Override
 	public Tag save(Tag tag) {
-		if (tag.getTagID() == null) {
-			Tag tagToSave = new Tag(tag.getText());
-			tagToSave = tagRepository.save(tagToSave);
-			return tagToSave;
-		}else {
-			Tag tagToSave = new Tag(tag.getTagID(),tag.getText());
-			tagToSave = tagRepository.save(tagToSave);
-			return tagToSave; 
+		if(tag.getText().length()>=3 && tag.getText().length()<=10) {
+			if (tag.getTagID() == null) {
+				Tag tagToSave = new Tag(tag.getText());
+				tagToSave = tagRepository.save(tagToSave);
+				return tagToSave;
+			}else {
+				Tag tagToSave = new Tag(tag.getTagID(),tag.getText());
+				tagToSave = tagRepository.save(tagToSave);
+				return tagToSave; 
+			}
 		}
-		
+		return null;
 	}
 
 	@Override
