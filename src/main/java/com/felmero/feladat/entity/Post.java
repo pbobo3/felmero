@@ -31,6 +31,7 @@ import net.bytebuddy.implementation.EqualsMethod;
 @Data
 @Table(name = "posts")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Post implements Serializable{
 	
 
@@ -53,7 +54,7 @@ public class Post implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name="id")
-	private long id;
+	private Long id;
 	
 	@Column(name = "title")
 	private String title;
@@ -80,5 +81,13 @@ public class Post implements Serializable{
 			return true;
 		}
 		return false;
+	}
+
+	public Post(Long id, String title, String content, Date createDate) {
+		this.id=id;
+		this.title=title;
+		this.content=content;
+		this.createDate = createDate;
+		this.modifiedDate = new Date(System.currentTimeMillis());
 	}
 }

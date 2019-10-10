@@ -32,6 +32,7 @@ public class PostController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+	
 
 	@GetMapping("/{id}")
 	@ResponseBody

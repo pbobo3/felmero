@@ -10,10 +10,10 @@ import com.felmero.feladat.entity.Category;
 
 
 
-public interface CategoryRepository extends CrudRepository<Category, Integer>{  
+public interface CategoryRepository extends CrudRepository<Category, Long>{  
 
 	@Transactional
-	void deleteById(Integer Id);
+	void deleteById(Long Id);
 	
-	Optional<Category> findById(Integer Id);
+	Optional<Category> findById(Long Id);
 }

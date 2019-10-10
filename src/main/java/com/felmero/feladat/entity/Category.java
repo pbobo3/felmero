@@ -17,9 +17,13 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.JoinColumn;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name ="categories")
 public class Category  implements Serializable{
 
@@ -32,7 +36,7 @@ public class Category  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="categoryID")
-	private long categoryID;
+	private Long categoryID;
 	
 	
 	
@@ -45,6 +49,19 @@ public class Category  implements Serializable{
 	
 	@ManyToMany(mappedBy = "categorySet")
 	Set<Post> posts = new HashSet<>();
+
+	public Category(String title) {
+		
+		this.title = title;
+	}
+
+	public Category(long categoryID, String title) {
+		
+		this.categoryID = categoryID;
+		this.title = title;
+	}
+	
+	
 	
 	
 }
