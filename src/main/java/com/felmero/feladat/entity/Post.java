@@ -20,12 +20,27 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "posts")
+
 public class Post implements Serializable{
+	
+
+
+	public Post(String title, String content) {
+		this.title=title;
+		this.content=content;
+		this.createDate = new Date(System.currentTimeMillis());
+		this.modifiedDate = this.createDate;
+		
+	}
+
+
 	/**
 	 * 
 	 */
