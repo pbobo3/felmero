@@ -3,8 +3,10 @@ package com.felmero.feladat.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +25,7 @@ public class ConnectionController {
 	
 	private final ConnectionService ConnectionService;
 	
-	@GetMapping("/{postID}/{categoryID}")
+	@PostMapping("/{postID}/{categoryID}")
 	@ResponseBody
 	public ResponseEntity<Boolean> addCategoryToPost(@PathVariable(value="postID") Long postID, @PathVariable(value = "categoryID")Long categoryID) {
 		Boolean isSuccessful=false;
@@ -41,7 +43,7 @@ public class ConnectionController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
-	@GetMapping("/delete/{postID}/{categoryID}")
+	@DeleteMapping("/{postID}/{categoryID}")
 	@ResponseBody
 	public ResponseEntity<Boolean> deleteCategoryToPostConnection(@PathVariable(value="postID") Long postID, @PathVariable(value = "categoryID")Long categoryID) {
 		Boolean isSuccessful=false;
@@ -60,7 +62,7 @@ public class ConnectionController {
 		}
 	}
 	
-	@GetMapping("/tag/{tagID}/{categoryID}")
+	@PostMapping("/tag/{tagID}/{categoryID}")
 	@ResponseBody
 	public ResponseEntity<Boolean> addTagToCategory(@PathVariable(value="tagID") Long tagID, @PathVariable(value = "categoryID")Long categoryID) {
 		Boolean isSuccessful=false;
@@ -79,7 +81,7 @@ public class ConnectionController {
 		}
 	}
 	
-	@GetMapping("/deleteTag/{tagID}/{categoryID}")
+	@DeleteMapping("/Tag/{tagID}/{categoryID}")
 	@ResponseBody
 	public ResponseEntity<Boolean> deleteTagToCategoryConnection(@PathVariable(value="tagID") Long tagID, @PathVariable(value = "categoryID")Long categoryID) {
 		Boolean isSuccessful=false;
