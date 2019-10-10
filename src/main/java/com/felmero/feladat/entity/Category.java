@@ -41,8 +41,10 @@ public class Category  implements Serializable{
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name ="tags_categories", joinColumns =  @JoinColumn(name = "categoryID") , inverseJoinColumns =  @JoinColumn(name = "tagID") )
-	Set<Tag> tagset = new HashSet<>();
+	Set<Tag> tagSet = new HashSet<>();
 	
+	@ManyToMany(mappedBy = "categorySet")
+	Set<Post> posts = new HashSet<>();
 	
 	
 }

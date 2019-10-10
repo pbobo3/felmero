@@ -35,8 +35,10 @@ public class Tag implements Serializable {
 	@Column(name = "text", length = 10) // 10nel hosszabb nem lehet
 	private String text;
 	
-	@ManyToMany(mappedBy = "tagset")
+	@ManyToMany(mappedBy = "tagSet")
 	private Set<Category> categories = new HashSet<>();
+	
+	
 	
 	
 
