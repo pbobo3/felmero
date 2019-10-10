@@ -23,9 +23,9 @@ public class PostServiceImpl implements PostService {
 	private final PostRepository postRepository;
 
 	@Override
-	public Post get(Integer id) {
+	public Post get(Long id) {
 		Optional<Post> optional = postRepository.findById(id);
-
+		
 		logger.error(optional.toString());
 
 		if (optional.isPresent()) {

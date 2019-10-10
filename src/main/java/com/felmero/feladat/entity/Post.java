@@ -22,12 +22,15 @@ import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.implementation.EqualsMethod;
 
 @Entity
 @Data
 @Table(name = "posts")
-
+@NoArgsConstructor
 public class Post implements Serializable{
 	
 
@@ -71,4 +74,11 @@ public class Post implements Serializable{
 	@JoinTable(name ="posts_categories", joinColumns =  @JoinColumn(name = "id") , inverseJoinColumns =  @JoinColumn(name = "categoryID") )
 	private Set<Category> categorySet = new HashSet<>();
 
+	public Boolean equals(Post post) {
+		if(post.id == this.id)
+		{
+			return true;
+		}
+		return false;
+	}
 }

@@ -7,11 +7,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.felmero.feladat.entity.Post;
 
-public interface PostRepository extends PagingAndSortingRepository<Post, Integer> {
+public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 	
 	
 	
-	Optional<Post> findById(Integer id);
+	Optional<Post> findById(Long id);
 	
 	
 

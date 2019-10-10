@@ -4,7 +4,7 @@ import com.felmero.feladat.entity.Post;
 
 public interface PostService {
 
-	Post get(Integer id);
+	Post get(Long id);
 	
 	Post save(Post post);
 }
