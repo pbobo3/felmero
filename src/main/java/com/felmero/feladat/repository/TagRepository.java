@@ -12,11 +12,11 @@ import com.felmero.feladat.entity.Tag;
 
 
 
-public interface TagRepository extends PagingAndSortingRepository<Tag, Integer> {
+public interface TagRepository extends PagingAndSortingRepository<Tag, Long> {
 	
-	//List<Tag> findAllByCategoryId(Integer categoryId);
 	
-	Optional<Tag> findById(Integer id);
+	
+	Optional<Tag> findById(Long id);
 	
 	@Query(value ="select * from tags where text =:#{#text}",nativeQuery = true)
 	Optional<Tag> findByText(@Param("text") String text);
