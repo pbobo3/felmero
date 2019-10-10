@@ -40,4 +40,21 @@ public class ConnectionServiceImpl implements ConnectionService {
 		
 		return false;
 	}
+
+	@Override
+	public Boolean deleteCategoryToPostConnection(Long postID, Long categoryId) {
+		Post post = postService.get(postID);
+		Category category = categoryService.get(categoryId);
+		
+		if(post.getCategorySet().contains(category)== true) {
+			post.getCategorySet().remove(category);
+			postService.save(post);
+			categoryService.save(category);
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
 }

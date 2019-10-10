@@ -41,5 +41,23 @@ public class ConnectionController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
+	@GetMapping("/delete/{postID}/{categoryID}")
+	@ResponseBody
+	public ResponseEntity<Boolean> deleteCategoryToPostConnection(@PathVariable(value="postID") Long postID, @PathVariable(value = "categoryID")Long categoryID) {
+		Boolean isSuccessful=false;
+		
+		try {
+			isSuccessful = ConnectionService.deleteCategoryToPostConnection(postID, categoryID);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		
+		
+		if(isSuccessful == true) {
+			return ResponseEntity.ok(isSuccessful);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
 
 }
