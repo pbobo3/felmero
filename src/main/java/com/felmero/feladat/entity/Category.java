@@ -15,6 +15,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.JoinColumn;
 
 import lombok.AllArgsConstructor;
@@ -43,7 +47,7 @@ public class Category  implements Serializable{
 	@Column(name="title")
 	private String title;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinTable(name ="tags_categories", joinColumns =  @JoinColumn(name = "categoryID") , inverseJoinColumns =  @JoinColumn(name = "tagID") )
 	Set<Tag> tagSet = new HashSet<>();
 	

@@ -1,5 +1,6 @@
 package com.felmero.feladat.service;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class PostServiceImpl implements PostService {
 			postToSave = postRepository.save(postToSave);
 			return postToSave;
 		} else {
-			Post postToSave = new Post(post.getId(), post.getTitle(), post.getContent(), post.getCreateDate());
+			Post postToSave = new Post(post.getId(), post.getTitle(), post.getContent(), post.getCreateDate(),post.getCategorySet());
 			postToSave = postRepository.save(postToSave);
 			return postToSave;
 		}

@@ -20,6 +20,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -71,7 +74,8 @@ public class Post implements Serializable{
 	private Date modifiedDate;
 	
 	
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+	@JsonIgnore
 	@JoinTable(name ="posts_categories", joinColumns =  @JoinColumn(name = "id") , inverseJoinColumns =  @JoinColumn(name = "categoryID") )
 	private Set<Category> categorySet = new HashSet<>();
 
@@ -89,5 +93,14 @@ public class Post implements Serializable{
 		this.content=content;
 		this.createDate = createDate;
 		this.modifiedDate = new Date(System.currentTimeMillis());
+	}
+
+	public Post(Long id, String title, String content, Date createDate, Set<Category> categorySet) {
+		this.id=id;
+		this.title=title;
+		this.content=content;
+		this.createDate = createDate;
+		this.modifiedDate = new Date(System.currentTimeMillis());
+		this.categorySet=categorySet;
 	}
 }
