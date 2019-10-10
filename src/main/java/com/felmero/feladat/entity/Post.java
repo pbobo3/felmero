@@ -74,7 +74,7 @@ public class Post implements Serializable{
 	private Date modifiedDate;
 	
 	
-	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
 	@JsonIgnore
 	@JoinTable(name ="posts_categories", joinColumns =  @JoinColumn(name = "id") , inverseJoinColumns =  @JoinColumn(name = "categoryID") )
 	private Set<Category> categorySet = new HashSet<>();
@@ -103,4 +103,5 @@ public class Post implements Serializable{
 		this.modifiedDate = new Date(System.currentTimeMillis());
 		this.categorySet=categorySet;
 	}
+	
 }

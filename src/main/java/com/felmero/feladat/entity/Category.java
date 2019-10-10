@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -47,11 +48,12 @@ public class Category  implements Serializable{
 	@Column(name="title")
 	private String title;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@JoinTable(name ="tags_categories", joinColumns =  @JoinColumn(name = "categoryID") , inverseJoinColumns =  @JoinColumn(name = "tagID") )
+	@ManyToMany(mappedBy = "categories")
+	
 	Set<Tag> tagSet = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "categorySet")
+	
 	Set<Post> posts = new HashSet<>();
 
 	public Category(String title) {
@@ -64,7 +66,6 @@ public class Category  implements Serializable{
 		this.categoryID = categoryID;
 		this.title = title;
 	}
-	
 	
 	
 	

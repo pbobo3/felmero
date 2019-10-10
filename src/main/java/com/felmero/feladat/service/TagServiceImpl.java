@@ -37,7 +37,7 @@ public class TagServiceImpl implements TagService{
 				tagToSave = tagRepository.save(tagToSave);
 				return tagToSave;
 			}else {
-				Tag tagToSave = new Tag(tag.getTagID(),tag.getText());
+				Tag tagToSave = new Tag(tag.getTagID(),tag.getText(),tag.getCategories());
 				tagToSave = tagRepository.save(tagToSave);
 				return tagToSave; 
 			}

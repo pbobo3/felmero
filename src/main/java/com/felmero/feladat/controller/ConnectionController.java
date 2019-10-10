@@ -59,5 +59,43 @@ public class ConnectionController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
+	
+	@GetMapping("/tag/{tagID}/{categoryID}")
+	@ResponseBody
+	public ResponseEntity<Boolean> addTagToCategory(@PathVariable(value="tagID") Long tagID, @PathVariable(value = "categoryID")Long categoryID) {
+		Boolean isSuccessful=false;
+		
+		try {
+			isSuccessful = ConnectionService.addTagToCategory(tagID, categoryID);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		
+		
+		if(isSuccessful == true) {
+			return ResponseEntity.ok(isSuccessful);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
+	
+	@GetMapping("/deleteTag/{tagID}/{categoryID}")
+	@ResponseBody
+	public ResponseEntity<Boolean> deleteTagToCategoryConnection(@PathVariable(value="tagID") Long tagID, @PathVariable(value = "categoryID")Long categoryID) {
+		Boolean isSuccessful=false;
+		
+		try {
+			isSuccessful = ConnectionService.deleteTagToCategoryConnnection(tagID, categoryID);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+		
+		
+		if(isSuccessful == true) {
+			return ResponseEntity.ok(isSuccessful);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		}
+	}
 
 }
