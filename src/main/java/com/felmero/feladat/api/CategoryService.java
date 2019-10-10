@@ -7,4 +7,6 @@ public interface CategoryService {
 	Category get(Long Id);
 	
 	Category save(Category category);
+	
+	Boolean delete(Long id); //true ha sikerül
 }

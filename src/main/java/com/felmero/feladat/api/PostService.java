@@ -7,4 +7,6 @@ public interface PostService {
 	Post get(Long id);
 	
 	Post save(Post post);
+	
+	Boolean delete(Long id);
 }

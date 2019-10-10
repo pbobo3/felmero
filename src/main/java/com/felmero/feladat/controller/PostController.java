@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.felmero.feladat.api.PostService;
+import com.felmero.feladat.entity.Category;
 import com.felmero.feladat.entity.Post;
 
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,19 @@ public class PostController {
 			return ResponseEntity.ok(post);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		}
+	}
+	
+	@GetMapping("/delete/{id}")
+	@ResponseBody
+	public ResponseEntity<Post> deleteCategory(@PathVariable(value = "id") Long id) {
+		try {
+			
+			postService.delete(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		}
 	}

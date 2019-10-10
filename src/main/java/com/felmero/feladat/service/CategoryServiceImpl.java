@@ -41,4 +41,17 @@ public class CategoryServiceImpl implements CategoryService{
 		}
 	}
 
+	@Override
+	public Boolean delete(Long id) {
+		try {
+			categoryRepository.deleteById(id);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
+	}
+	
+	
+
 }
